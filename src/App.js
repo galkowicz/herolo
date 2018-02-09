@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import './App.css';
 import {asyncGetBooks} from './server/serverUtil';
+import BookList from './components/bookList';
 
 class App extends Component {
     constructor(props) {
         super(props);
-        this.state = {books: {}}
+        this.state = {books: []}
     }
 
     componentDidMount() {
@@ -15,11 +16,18 @@ class App extends Component {
     }
 
     render() {
-        return (
-            <div className="App">
+        const books = this.state.books;
 
-            </div>
-        );
+        if (books.length > 0) {
+            return (
+                <div className="App">
+                    <BookList books={this.state.books}/>
+                </div>
+            );
+        } else {
+            return null;
+        }
+
     }
 }
 

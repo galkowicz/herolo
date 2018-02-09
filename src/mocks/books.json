@@ -2,52 +2,52 @@
   "books": [
     {
       "author": "Browning",
-      "date": 1911,
+      "date": "1911",
       "title": "Lorem tempor"
     },
     {
       "author": "Petersen",
-      "date": 2009,
+      "date": "2009",
       "title": "non officia"
     },
     {
       "author": "Vasquez",
-      "date": 1980,
+      "date": "1980",
       "title": "ex aliquip"
     },
     {
       "author": "Guerra",
-      "date": 2011,
+      "date": "2011",
       "title": "amet veniam"
     },
     {
       "author": "Whitaker",
-      "date": 1979,
+      "date": "1979",
       "title": "reprehenderit aute"
     },
     {
       "author": "Bird",
-      "date": 1985,
+      "date": "1985",
       "title": "excepteur cupidatat"
     },
     {
       "author": "Jacobson",
-      "date": 1922,
+      "date": "1922",
       "title": "id occaecat"
     },
     {
       "author": "England",
-      "date": 1995,
+      "date": "1995",
       "title": "ea cillum"
     },
     {
       "author": "Winters",
-      "date": 2015,
+      "date": "2015",
       "title": "est do"
     },
     {
       "author": "Bonner",
-      "date": 2017,
+      "date": "2017",
       "title": "tempor non"
     }
   ]
