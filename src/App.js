@@ -79,11 +79,12 @@ class App extends Component {
         if (books.length > 0) {
             return (
                 <div className="App">
-                    <BookList books={this.state.books}
+                    <BookList books={books}
                               onEditClick={this.handleEditClicked}
                               onAddBook={this.handleAddBook}
                               onRemoveClick={this.handleRemoveBook}/>
                     {isEditOpen && <EditBook bookToEdit={bookToEdit}
+                                             books={books}
                                              onSaveClick={this.handleSaveBook}
                                              closeEdit={this.handleEditClose}/>}
                     {isPromptOpen && <Prompt onNoClick={this.closePrompt}

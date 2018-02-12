@@ -1,6 +1,9 @@
 import React from "react";
 import {Button, Form, Message, Icon} from 'semantic-ui-react';
-import {isEmptyString, isValidPastYear, isFormValid} from '../utils/validationUtil';
+import {isEmptyString, isValidPastYear, isFormValid, getTitleMessage, isMultipleTitle} from '../utils/validationUtil';
+import {ILLEGAL_DATE, EMPTY_STRING} from '../constants/messages';
+
+// DUPLICATE_TITLE, ILLEGAL_DATE, EMPTY_STRING
 
 class EditBook extends React.Component {
     constructor(props) {
@@ -17,22 +20,24 @@ class EditBook extends React.Component {
     handleInputChange(event) {
         const inputName = event.target.name;
         const value = event.target.value;
+
         let newState = Object.assign({}, this.state);
         newState.inputs[inputName] = value;
+        const titleValid = !isEmptyString(newState.inputs.title) && !isMultipleTitle(newState.inputs.title, this.props.books);
 
-        this.setState({newState});
+        this.setState({newState, titleValid});
     }
 
     handleFormSubmit() {
         const {inputs} = this.state;
-        const {onSaveClick, closeEdit} = this.props;
-        const titleValid = !isEmptyString(inputs.title);
+        const {onSaveClick, closeEdit, books} = this.props;
+        const titleValid = !isEmptyString(inputs.title) && !isMultipleTitle(inputs.title, books);
         const authorValid = !isEmptyString(inputs.author);
         const dateValid = isValidPastYear(inputs.date);
 
         this.setState({titleValid, dateValid, authorValid});
 
-        if (isFormValid(inputs)) {
+        if (isFormValid(inputs, books)) {
             onSaveClick(inputs);
             closeEdit()
         }
@@ -40,7 +45,7 @@ class EditBook extends React.Component {
 
     render() {
         const {titleValid, authorValid, dateValid, inputs} = this.state;
-        const {closeEdit} = this.props;
+        const {closeEdit, books} = this.props;
         const {title, author, date} = inputs;
 
         return (
@@ -54,8 +59,8 @@ class EditBook extends React.Component {
                             value={title}/>
                 {!titleValid && <Message
                     error
-                    header='Action Title'
-                    content='Empty author name is not allowed.'/>}
+                    header='Invalid Title'
+                    content={getTitleMessage(title, books)}/>}
                 <Form.Input onChange={this.handleInputChange}
                             name='author'
                             label='Author'
@@ -63,7 +68,7 @@ class EditBook extends React.Component {
                 {!authorValid && <Message
                     error
                     header='Invalid Author'
-                    content='Empty author name is not allowed.'/>}
+                    content={EMPTY_STRING}/>}
                 <Form.Input onChange={this.handleInputChange}
                             name='date'
                             label='Date'
@@ -71,7 +76,7 @@ class EditBook extends React.Component {
                 {!dateValid && <Message
                     error
                     header='Invalid Date'
-                    content='You can only use past dates.'/>}
+                    content={ILLEGAL_DATE}/>}
                 <Button onClick={this.handleFormSubmit}>Save</Button>
                 <Button onClick={closeEdit}>Cancel</Button>
             </Form>)
