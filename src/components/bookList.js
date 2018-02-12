@@ -1,6 +1,7 @@
 import React from "react";
 import {List, Button} from 'semantic-ui-react'
 import Book from './book'
+import {formatTitle} from '../utils/booksListUtil';
 
 class BookList extends React.Component {
     constructor(props) {
@@ -20,7 +21,7 @@ class BookList extends React.Component {
                 {books.map((book) => {
                     const {title, author, date} = book;
                     const props = {
-                        title,
+                        title: formatTitle(title),
                         author,
                         date,
                         onEditClick: onEditClick.bind(this, title),
