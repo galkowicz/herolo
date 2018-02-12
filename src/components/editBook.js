@@ -1,9 +1,8 @@
 import React from "react";
-import {Button, Form, Message, Icon} from 'semantic-ui-react';
+import {Button, Form, Message, Icon, Modal} from 'semantic-ui-react';
 import {isEmptyString, isValidPastYear, isFormValid, getTitleMessage, isMultipleTitle} from '../utils/validationUtil';
+import {formatTitle} from '../utils/booksListUtil';
 import {ILLEGAL_DATE, EMPTY_STRING} from '../constants/messages';
-
-// DUPLICATE_TITLE, ILLEGAL_DATE, EMPTY_STRING
 
 class EditBook extends React.Component {
     constructor(props) {
@@ -49,37 +48,41 @@ class EditBook extends React.Component {
         const {title, author, date} = inputs;
 
         return (
-            <Form error className='edit-form center'>
-                <div className='form-close' onClick={closeEdit}>
-                    <Icon link name='close'/>
-                </div>
-                <Form.Input onChange={this.handleInputChange}
-                            name='title'
-                            label='Title'
-                            value={title}/>
-                {!titleValid && <Message
-                    error
-                    header='Invalid Title'
-                    content={getTitleMessage(title, books)}/>}
-                <Form.Input onChange={this.handleInputChange}
-                            name='author'
-                            label='Author'
-                            value={author}/>
-                {!authorValid && <Message
-                    error
-                    header='Invalid Author'
-                    content={EMPTY_STRING}/>}
-                <Form.Input onChange={this.handleInputChange}
-                            name='date'
-                            label='Date'
-                            value={date}/>
-                {!dateValid && <Message
-                    error
-                    header='Invalid Date'
-                    content={ILLEGAL_DATE}/>}
-                <Button onClick={this.handleFormSubmit}>Save</Button>
-                <Button onClick={closeEdit}>Cancel</Button>
-            </Form>)
+            <Modal open={true} size='tiny'>
+                <Form error className='edit-form nice-blue'>
+                    <div className='right-floating' onClick={closeEdit}>
+                        <Icon link name='close'/>
+                    </div>
+                    <Form.Input onChange={this.handleInputChange}
+                                name='title'
+                                label='Title'
+                                value={formatTitle(title)}/>
+                    {!titleValid && <Message
+                        error
+                        header='Invalid Title'
+                        content={getTitleMessage(title, books)}/>}
+                    <Form.Input onChange={this.handleInputChange}
+                                name='author'
+                                label='Author'
+                                value={author}/>
+                    {!authorValid && <Message
+                        error
+                        header='Invalid Author'
+                        content={EMPTY_STRING}/>}
+                    <Form.Input onChange={this.handleInputChange}
+                                name='date'
+                                label='Date'
+                                value={date}/>
+                    {!dateValid && <Message
+                        error
+                        header='Invalid Date'
+                        content={ILLEGAL_DATE}/>}
+                    <div className='edit-actions'>
+                        <Button className='inverted-btn' onClick={this.handleFormSubmit}>Save</Button>
+                        <Button className='inverted-btn' onClick={closeEdit}>Cancel</Button>
+                    </div>
+                </Form>
+            </Modal>)
     }
 }
 

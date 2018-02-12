@@ -1,5 +1,5 @@
 import React from "react";
-import {List, Button} from 'semantic-ui-react'
+import {List, Button, Grid} from 'semantic-ui-react'
 import Book from './book'
 import {formatTitle} from '../utils/booksListUtil';
 
@@ -12,11 +12,11 @@ class BookList extends React.Component {
         const {books, onRemoveClick, onEditClick, onAddBook} = this.props;
 
         return ([
-            <div className='list-header' key={1}>
-                <span className='list-header__title'>Title</span>
-                <span className='list-header__author'>Author</span>
-                <span className='list-header__date'>Date</span>
-            </div>,
+            <Grid container columns={4} key={1}>
+                <Grid.Column><span className='list-header__title'>Title</span></Grid.Column>
+                <Grid.Column><span className='list-header__author'>Author</span></Grid.Column>
+                <Grid.Column><span className='list-header__date'>Date</span></Grid.Column>
+            </Grid>,
             <List divided relaxed key={2}>
                 {books.map((book) => {
                     const {title, author, date} = book;
@@ -37,7 +37,7 @@ class BookList extends React.Component {
                 })}
             </List>,
             <div className="book-remove" key={3}>
-                <Button onClick={onAddBook}>Add Book</Button>
+                <Button color='facebook' onClick={onAddBook}>Add Book</Button>
             </div>])
     }
 }

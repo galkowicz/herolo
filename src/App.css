@@ -1,41 +1,15 @@
 .App {
   padding: 1rem; }
 
-.center {
-  position: absolute !important;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto; }
-
-.list-header {
-  display: flex; }
-  .list-header__title {
-    width: 13rem; }
-  .list-header__author {
-    width: 10rem; }
-
-.book {
-  display: flex;
-  justify-content: space-between; }
-  .book-details {
-    display: flex; }
-    .book-details__title {
-      width: 13rem; }
-    .book-details__author {
-      width: 10rem; }
-
-.prompt-message {
-  width: 30rem;
-  height: 15rem;
-  background-color: yellow; }
+.nice-blue {
+  background-color: #e5f0f5 !important; }
 
 .edit-form {
-  padding: 1rem;
-  width: 30rem;
-  height: auto;
-  background-color: yellow; }
+  padding: 1rem; }
 
-.form-close {
+.right-floating {
   float: right; }
+
+.inverted-btn {
+  color: white !important;
+  background: #333333 !important; }

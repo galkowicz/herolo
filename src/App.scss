@@ -1,53 +1,22 @@
+$nice-blue: #e5f0f5;
+
 .App {
   padding: 1rem;
 }
 
-.center {
-  position: absolute !important;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-}
-
-.list-header {
-  display: flex;
-  &__title {
-    width: 13rem;
-  }
-  &__author {
-    width: 10rem;
-  }
-}
-
-.book {
-  display: flex;
-  justify-content: space-between;
-  &-details {
-    display: flex;
-    &__title {
-      width: 13rem;
-    }
-    &__author {
-      width: 10rem;
-    }
-  }
-}
-
-.prompt-message {
-  width: 30rem;
-  height: 15rem;
-  background-color: yellow
+.nice-blue {
+  background-color: $nice-blue !important;
 }
 
 .edit-form {
   padding: 1rem;
-  width: 30rem;
-  height: auto;
-  background-color: yellow
 }
 
-.form-close {
+.right-floating {
   float: right;
+}
+
+.inverted-btn {
+  color: white !important;
+  background: #333333 !important;
 }
