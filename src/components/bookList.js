@@ -4,10 +4,6 @@ import Book from './book'
 import {formatTitle} from '../utils/booksListUtil';
 
 class BookList extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         const {books, onRemoveClick, onEditClick, onAddBook} = this.props;
 
