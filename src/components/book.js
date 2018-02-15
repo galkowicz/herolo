@@ -1,5 +1,6 @@
 import React from "react";
-import {Button, Grid} from 'semantic-ui-react'
+import {Button, Grid} from 'semantic-ui-react';
+import {formatDate} from '../utils/validationUtil';
 
 const Book = (props) => {
     const {title, author, date, onEditClick, onRemoveClick} = props;
@@ -10,7 +11,7 @@ const Book = (props) => {
             {/*<div className='book-details'>*/}
                 <Grid.Column><span className='book-details__title'>{title}</span></Grid.Column>
                 <Grid.Column><span className='book-details__author'>{author}</span></Grid.Column>
-                <Grid.Column><span className='book-details__date'>{date}</span></Grid.Column>
+                <Grid.Column><span className='book-details__date'>{formatDate(date)}</span></Grid.Column>
             {/*</div>*/}
                 <Grid.Column>
             <div className='book-actions'>

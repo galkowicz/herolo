@@ -5,22 +5,10 @@ export const isEmptyString = (str) => {
 };
 
 export const isValidPastYear = (date) => {
-    const reg = new RegExp(/^\d+$/);
-    if (!date.match(reg)) {
-        return false;
-    }
+    const selectedDate = new Date(date);
+    const now = new Date();
 
-    if (date < 0) {
-        return false;
-    }
-    let currentYear = new Date().getFullYear();
-    return currentYear - date >= 0;
-};
-
-export const isFormValid = (inputs, books) => {
-    const {title, author, date} = inputs;
-
-    return isValidPastYear(date) && !isEmptyString(title) && !isEmptyString(author) && !isMultipleTitle(title, books);
+    return selectedDate < now;
 };
 
 export const isMultipleTitle = (title, books) => {
@@ -36,4 +24,23 @@ export const getTitleMessage = (title, books) => {
     if (isMultipleTitle(title, books)) {
         return DUPLICATE_TITLE;
     }
+};
+
+export const isTitleValid = (title, books, isNewBook) => {
+    if (isNewBook) {
+        return !isEmptyString(title) && !isMultipleTitle(title, books);
+    } else {
+        return !isEmptyString(title);
+    }
+};
+
+export const formatDate = (inputDate) => {
+    const date = new Date(inputDate);
+    const day = date.getDate().toString();
+    const month = (date.getMonth() + 1).toString();
+
+    const formatDay = day[1] ? day : '0' + day[0];
+    const formatMonth = month[1] ? month : '0' + month[0];
+
+    return `${formatDay}/${formatMonth}/${date.getFullYear()}`;
 };
